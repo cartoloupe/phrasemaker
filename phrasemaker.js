@@ -15,8 +15,10 @@ if (Meteor.isClient) {
       if (Session.get('player_id') == playerWhoseTurn) {
         setTimeout(function(){
           console.log('timed out')
+          if (Session.get('player_id') == playerWhoseTurn) {
           Meteor.call('switchPlayer', Session.get('player_id'));
-        }, 15000)
+          }
+        }, 3000)
         setInterval(function(){
           $('input#A').focus();
         }, 1000)
@@ -30,7 +32,7 @@ if (Meteor.isClient) {
   Template.signup.events({
     'click button': function () {
       name = $('#name').val();
-      player = Players.insert({name: name});
+      player = Players.insert({name: name, created_at: Date.now() });
       console.log(player)
       Session.set('player_id', player)
 

@@ -1,6 +1,6 @@
 Meteor.methods({
   switchPlayer: function(player_id){
-    players = Players.find({}).fetch();
+    players = Players.find({}, {sort: {created_at: -1}}).fetch()
 
     index = players.findIndex(function(n){
       console.log(n)
