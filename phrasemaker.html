@@ -9,9 +9,12 @@
 <template name="game">
 <div>
   <span>{{texts}}</span>
+
   {{#if currentPlayer}}
-  <input id="A" style="float: left;">
-  <p class="time"></p>
+  <input id="A" class="A your-turn" >
+  {{else}}
+  <input id="A" class="A " disabled >
   {{/if}}
+  <p class="time"></p>
 </div>
 </template>

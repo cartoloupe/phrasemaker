@@ -1,0 +1,17 @@
+/* CSS declarations go here */
+.A {
+    font-size: 24px;
+    border-radius: 25%;
+    width: 40px;
+
+  border: 3px solid red; 
+  &.your-turn {
+      border: 3px solid #66ff33;
+  }
+
+
+}
+
+.text {
+  font-size: 24px;
+}

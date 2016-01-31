@@ -12,7 +12,8 @@ if (Meteor.isClient) {
     },
     currentPlayer: function(){
       playerWhoseTurn = Gamestate.findOne().nextPlayer
-      if (Session.get('player_id') == playerWhoseTurn) {
+      current_player_id = Session.get('player_id')
+      if ( (current_player_id != undefined) && (current_player_id== playerWhoseTurn) ) {
         setTimeout(function(){
           console.log('timed out')
           if (Session.get('player_id') == playerWhoseTurn) {
@@ -21,7 +22,7 @@ if (Meteor.isClient) {
         }, 3000)
         setInterval(function(){
           $('input#A').focus();
-        }, 1000)
+        }, 300)
         return true
       } else {
         return false
@@ -50,6 +51,7 @@ if (Meteor.isClient) {
       input.value = "";
       text = Texts.findOne()
       Texts.upsert(1, {$set: {val: (text.val + addval)}});
+      $('input#A').toggleClass('your-turn')
       Meteor.call('switchPlayer', Session.get('player_id'));
     }
 
