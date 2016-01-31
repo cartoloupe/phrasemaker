@@ -12,5 +12,10 @@ Meteor.methods({
     nextPlayer = players[(index + 1) % nPlayers]
     Gamestate.upsert(1, {nextPlayer: nextPlayer._id})
 
+  },
+  reset: function(){
+      Players.remove({});
+      Gamestate.update(1, {nextPlayer: null, reset: true});
+      Texts.update(1, {val: ""})
   }
 });

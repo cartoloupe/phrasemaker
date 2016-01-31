@@ -3,25 +3,15 @@
 </head>
 
 <body>
-  {{> signup}}
-  {{> game}}
+  {{> spa}}
 </body>
-
-<template name="signup">
-  {{#if signedUp}}
-  {{else}}
-  <h1>Enter your name!</h1>
-  <input id="name">
-
-  <button id="named">enter</button>
-  {{/if}}
-</template>
 
 <template name="game">
 <div>
   <span>{{texts}}</span>
   {{#if currentPlayer}}
   <input id="A" style="float: left;">
+  <p class="time"></p>
   {{/if}}
 </div>
 </template>
