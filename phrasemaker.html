@@ -3,18 +3,35 @@
 </head>
 
 <body>
-  {{> spa}}
+  <div class="container">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-10">
+      {{> spa}}
+    </div>
+    <div class="col-xs-1">
+    </div>
+  </div>
 </body>
 
 <template name="game">
-<div>
+<div class="">
   <span>{{texts}}</span>
-
-  {{#if currentPlayer}}
-  <input id="A" class="A your-turn" >
+  {{#if gameOver}}
+    <p>GAME OVER</p>
+    {{> controls}}
   {{else}}
-  <input id="A" class="A " disabled >
+
+    {{#if currentPlayer}}
+      <input id="A" class="A your-turn" >
+    {{else}}
+      <input id="A" class="A " disabled >
+    {{/if}}
+    <p class="time">{{timeLeft}}</p>
   {{/if}}
-  <p class="time"></p>
+
+  <p> the other group's progress: </p>
+  <span>{{other_texts}} </span>
+
 </div>
 </template>
