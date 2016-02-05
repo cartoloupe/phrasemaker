@@ -7,7 +7,9 @@
     'click button.reset-phrase': function(){
       console.log("reset-phrase was pressed")
       Meteor.call('resetPhrase');
+    },
+    'click button.start-game': function(){
+      Meteor.call('startGame');
     }
-
   })
 

@@ -1,4 +1,19 @@
 <template name="controls">
-<button name="reset" class="reset-game">reset</button>
-<button name="reset-phrase" class="reset-phrase">new phrase</button>
+  {{#if $eq gamePhase 'running'}}
+    <button name="reset" class="reset-game">reset</button>
+  {{/if}}
+
+  {{#if $eq gamePhase 'signup'}}
+    <button name="reset" class="reset-game">reset</button>
+    <button name="start-game" class="start-game">start game</button>
+  {{/if}}
+
+  {{#if $eq gamePhase 'gameOver'}}
+    <button name="reset" class="reset-game">reset</button>
+    <button name="start-game" class="start-game">start game</button>
+  {{/if}}
+
+
+  <button name="reset-phrase" class="reset-phrase">new phrase</button>
 </template>
+

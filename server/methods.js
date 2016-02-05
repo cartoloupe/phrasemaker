@@ -13,7 +13,7 @@ Meteor.methods({
   },
   reset: function(){
     Players.remove({});
-    Gamestate.update(1, {$set: {reset: true, gameOver: false, timer: 5} });
+    Gamestate.update(1, {$set: {reset: true, gamePhase: 'signup', timer: 5} });
     Turnstate.upsert(1, {nextPlayer: null})
     Turnstate.upsert(2, {nextPlayer: null})
     Texts.update(1, {val: ""})
@@ -21,14 +21,14 @@ Meteor.methods({
   },
   resetPhrase: function(){
     Texts.update(1, {val: ""})
-    Gamestate.update(1, {$set: { gameOver: false}});
+    Gamestate.update(1, {$set: { gamePhase: 'running'}});
     Meteor.call('startGame')
     //Meteor.beginInterval(interval)
   },
   startGame: function(){
     setTimeout(
       Meteor.bindEnvironment(function () {
-        Gamestate.update(1, {$set: { gameOver: true, timer: 5}})
+        Gamestate.update(1, {$set: { gamePhase: 'running', timer: 5}})
       }), 5000)
 
   },

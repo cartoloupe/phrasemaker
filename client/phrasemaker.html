@@ -17,9 +17,9 @@
 <template name="game">
 <div class="">
   <span>{{texts}}</span>
-  {{#if gameOver}}
+  {{> controls}}
+  {{#if $eq gamePhase "gameOver"}}
     <p>GAME OVER</p>
-    {{> controls}}
   {{else}}
 
     {{#if currentPlayer}}
