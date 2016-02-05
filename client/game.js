@@ -1,11 +1,6 @@
-if (Meteor.isClient) {
-
-  Template.signup.helpers({
-    signedUp: function () {
-      return Session.get('player_id')
-    },
-  })
-
+  Template.game.rendered = function(){
+    console.log('rendered called')
+  };
   Template.game.helpers({
     gameOver: function () {
       Session.set('gameOver', Gamestate.findOne().gameOver);
@@ -49,35 +44,6 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.signup.events({
-    'click button': function () {
-      name = $('#name').val();
-
-      group_id = 1
-      console.log(Players.find({}).count() )
-      if (Players.find({}).count() == 0) {
-        group_id = 1
-      }else{
-        nGroup1 = Players.find({group_id: 1}).count()
-        nGroup2 = Players.find({group_id: 2}).count()
-        if (nGroup1 > nGroup2) {
-          group_id = 2
-        }else{
-          group_id = 1
-        }
-      }
-
-      player = Players.insert({name: name, created_at: Date.now(), group_id: group_id });
-      Session.set('player_id', player)
-      Session.set('group_id', group_id)
-
-      if (Turnstate.findOne(group_id).nextPlayer == null) {
-        Turnstate.update(group_id, {$set: {nextPlayer: player} })
-        Meteor.call('startGame')
-      }
-
-    }
-  });
 
   Template.game.events({
     'input #A': function () {
@@ -94,20 +60,4 @@ if (Meteor.isClient) {
 
   });
 
-  Template.controls.events({
-    'click button.reset-game': function(){
-      console.log("reset was pressed")
-      Meteor.call('reset');
-      window.location.reload()
-    },
-    'click button.reset-phrase': function(){
-      console.log("reset-phrase was pressed")
-      Meteor.call('resetPhrase');
-    }
 
-  })
-
-  Template.game.rendered = function(){
-    console.log('rendered called')
-  };
-}
