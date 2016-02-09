@@ -20,8 +20,9 @@
   {{> controls}}
   {{#if $eq gamePhase "gameOver"}}
     <p>GAME OVER</p>
-  {{else}}
+  {{/if}}
 
+  {{#if $eq gamePhase 'running'}}
     {{#if currentPlayer}}
       <input id="A" class="A your-turn" >
     {{else}}
@@ -32,6 +33,8 @@
 
   <p> the other group's progress: </p>
   <span>{{other_texts}} </span>
+
+  {{> debug}}
 
 </div>
 </template>

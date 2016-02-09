@@ -22,6 +22,7 @@ Template.game.helpers({
     return Texts.findOne(other_group_id).val;
   },
   currentPlayer: function(){
+    group_id = Session.get('group_id')
     playerWhoseTurn = Turnstate.findOne(group_id).nextPlayer
     current_player_id = Session.get('player_id')
     if ( (current_player_id != undefined) && (current_player_id== playerWhoseTurn) ) {

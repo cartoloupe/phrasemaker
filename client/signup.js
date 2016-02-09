@@ -1,9 +1,13 @@
 chooseGroup = function(players){
+  console.log(players)
   if (players.length == 0) {
     return 1
   }else{
     groups = _.groupBy(players, function(p){return p.group_id})
-    if (groups['1'].length > groups['2'].length) {
+    console.log(groups)
+    nGroup1 = groups['1'] || []
+    nGroup2 = groups['2'] || []
+    if (nGroup1.length > nGroup2.length) {
       return 2
     }else{
       return 1
