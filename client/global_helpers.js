@@ -15,3 +15,8 @@ Template.registerHelper( 'gamestates', () => {
 Template.registerHelper( 'playersInDB', () => {
     return JSON.stringify(Players.find({}).fetch())
 });
+
+Template.registerHelper( 'players', (group_id) => {
+    players = Players.find({group_id: group_id}).fetch()
+    return players
+});

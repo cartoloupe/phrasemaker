@@ -14,7 +14,7 @@ Meteor.methods({
   },
   reset: function(){
     Players.remove({});
-    Gamestate.update(1, {$set: {reset: true, gamePhase: 'signup', timer: gameLength()} });
+    Gamestate.update(1, {$set: {reset: true, gamePhase: 'signup', timer: GAMELENGTH} });
     Turnstate.upsert(1, {nextPlayer: null})
     Turnstate.upsert(2, {nextPlayer: null})
     Texts.update(1, {val: ""})

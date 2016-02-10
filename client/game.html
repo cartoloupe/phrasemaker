@@ -1,0 +1,42 @@
+<template name="game">
+<div class="">
+  <span>{{texts}}</span>
+  {{> controls}}
+  {{#if $eq gamePhase "gameOver"}}
+    <p>GAME OVER</p>
+  {{/if}}
+
+  {{#if $eq gamePhase 'running'}}
+    {{#if currentPlayer}}
+      <input id="A" class="A your-turn" >
+    {{else}}
+      <input id="A" class="A " disabled >
+    {{/if}}
+    <p class="time">{{timeLeft}}</p>
+  {{/if}}
+
+  <p> the other group's progress: </p>
+  <span>{{other_texts}} </span>
+
+
+  <p>Teams</p>
+  <div class="row">
+    <div class="col-xs-6">
+      <p>Team1</p>
+      {{#each players 1}}
+        <p class="{{isCurrentTurn _id 1}}">{{name}}</p>
+      {{/each}}
+    </div>
+    <div class="col-xs-6">
+      <p>Team2</p>
+      {{#each players 2}}
+      <p class="{{isCurrentTurn _id 2}}">{{name}}</p>
+      {{/each}}
+    </div>
+  </div>
+
+  {{> debug}}
+
+</div>
+</template>
+

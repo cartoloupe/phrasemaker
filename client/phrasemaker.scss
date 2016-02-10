@@ -3,6 +3,13 @@ body {
   font-size: 48px;
 }
 
+.active {
+  background-color: green;
+}
+.inactive {
+  background-color: gray;
+}
+
 .debug {
   font-size: 16px;
 }

@@ -14,27 +14,3 @@
   </div>
 </body>
 
-<template name="game">
-<div class="">
-  <span>{{texts}}</span>
-  {{> controls}}
-  {{#if $eq gamePhase "gameOver"}}
-    <p>GAME OVER</p>
-  {{/if}}
-
-  {{#if $eq gamePhase 'running'}}
-    {{#if currentPlayer}}
-      <input id="A" class="A your-turn" >
-    {{else}}
-      <input id="A" class="A " disabled >
-    {{/if}}
-    <p class="time">{{timeLeft}}</p>
-  {{/if}}
-
-  <p> the other group's progress: </p>
-  <span>{{other_texts}} </span>
-
-  {{> debug}}
-
-</div>
-</template>

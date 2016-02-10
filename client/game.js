@@ -3,6 +3,18 @@ Template.game.rendered = function(){
 };
 
 Template.game.helpers({
+  isCurrentTurn: function(player_id, group_id){
+                   console.log([player_id, group_id])
+                   if (player_id === Turnstate.findOne(group_id).nextPlayer){
+                     console.log(Turnstate.findOne(group_id).nextPlayer)
+                     return "active"
+
+                   }else{
+                     return "inactive"
+                   }
+
+
+  },
   timeLeft: function () {
     Session.set('timeLeft', Gamestate.findOne().timer);
     return Session.get('timeLeft')
@@ -26,13 +38,14 @@ Template.game.helpers({
     playerWhoseTurn = Turnstate.findOne(group_id).nextPlayer
     current_player_id = Session.get('player_id')
     if ( (current_player_id != undefined) && (current_player_id== playerWhoseTurn) ) {
-      setTimeout(function(){
+      window.timeout = setTimeout(function(){
         console.log('timed out')
         if (Session.get('player_id') == playerWhoseTurn) {
         Meteor.call('switchPlayer', Session.get('player_id'), Session.get('group_id'));
         }
       }, 3000)
-      setInterval(function(){
+
+      setTimeout(function(){
         $('input#A').focus();
       }, 300)
       return true
@@ -53,6 +66,7 @@ Template.game.events({
     text = Texts.findOne(Session.get('group_id'))
     Texts.upsert(text._id, {$set: {val: (text.val + addval)}});
     $('input#A').toggleClass('your-turn')
+    window.clearTimeout(window.timeout)
     Meteor.call('switchPlayer', Session.get('player_id'), Session.get('group_id'));
   }
 
